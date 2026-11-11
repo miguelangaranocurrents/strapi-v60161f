@@ -625,6 +625,13 @@ const RelationsInput = ({
        *
        */
       onChange(relation);
+
+      /**
+       * The search that produced this option is stale once it's connected: reset it so that
+       * reopening the combobox lists the remaining relations rather than filtering on the
+       * selected entry (which is now omitted and would show "No relations available").
+       */
+      setSearchParams((s) => ({ ...s, _q: '', page: 1 }));
     },
     [data, formatMessage, onChange, toggleNotification]
   );
